@@ -1,4 +1,4 @@
-import 'package:proj01_hello_dart/proj01_hello_dart.dart';
+import 'package:proj01_hello_dart/function_hello.dart';
 import 'package:test/test.dart';
 
 void main() {
