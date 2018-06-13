@@ -1,5 +1,8 @@
 import 'package:proj01_hello_dart/function_hello.dart' as function_hello;
 
+/* GLOBALS (scope outside the main) */
+var myOutsideVar = 'Outside Var!!';
+
 main(List<String> arguments) {
 
   /* Introduction to the Dart Programming Language - From Scratch */
@@ -132,6 +135,75 @@ main(List<String> arguments) {
   print(ourName);
   print('This is our name: ${showName()}, ${showAge()}, 42 and 1 and is Know? ${isKnow()}');
 
+  // 39
+  var sayHelloString = sayHello('Americo, Guida e Hugo Tomas', 'Agrela e Batalha', 38);
+  print(sayHelloString);
+
+  // 40 opcional params
+  var yourAgeString1 = yourAge('Americo', 'Agrela', 38);
+  print(yourAgeString1);
+  var yourAgeString2 = yourAge('Guida', 'Marques');
+  print(yourAgeString2);
+
+  // 41 globals (lexical scope in dart)
+  myOutsideVar = 'Hello There!!';
+  print(myOutsideVar);
+
+  insideFunction() {
+    var agentName = 'Hugo Tomas!!';
+    print('Agente name: $agentName');
+
+    myOutsideVar = 'Hugo';
+    print('From inside is: $myOutsideVar');
+
+    //another level of scope
+    innerFunction() {
+      print('Inner function $agentName');
+    }
+
+    innerFunction();
+  }
+
+  insideFunction();
+
+  // 44 object oriented programming
+  // class: blueprint or model
+  // object: instances of the blueprint
+  // properties or attributes (characteristics)
+  // methods (actions like turnOn, turnOff, setVolume,...)
+  var mic = new Microphone.initialize();
+  // access the attributes of the object setting them
+  mic.name = 'Blue Yeti';
+  mic.color = 'silver';
+  mic.model = 1234;
+  print('Mic: $mic of the model ${mic.model}');
+
+  // 46 methods
+  mic.turnOn();
+  mic.setVolume();
+  mic.turnOff();
+
+  print(mic.isOn());
+  print(mic.modelNumber());
+
+  // 47 constructors
+  var mic1 = new Microphone('Yetti', 'Blue', 9876);
+  print('mic1 $mic1');
+
+  // 49
+  print(mic.getName);
+  mic.setName = 'NewName';
+  print(mic.getName);
+
+  // 52 inheritance
+
+
+
+
+
+  
+
+
   print('Hello world: ${function_hello.calculate()}!');
 }
 
@@ -162,4 +234,67 @@ int showAge() {
 
 bool isKnow() {
   return true;
+}
+
+/* FUNCTIONS minimalist syntax */
+String getName() => 'Americo, Guida e Hugo Tomas!!';
+
+int showAgeNow() => 38;
+
+String sayHello(String name, String lastName, [int age]) =>'sayHello $name $lastName and my age id $age';
+
+/* OPCIONAL PARAMS (with square brackets) */
+String yourAge(String name, String lastName, [int age]) {
+  var finalResult = '$name $lastName';
+
+  if (age != null) {
+    finalResult = '$finalResult and the age is $age';
+  }
+  return finalResult;
+}
+
+/* CLASSES */
+class Microphone {
+  // attributes or instance variables or member variables
+  String name;
+  String color;
+  int model;
+
+  // constructor (command + n)
+//  Microphone(String name, String color, int model) {
+//    this.name = name;
+//    this.color = color;
+//    this.model = model;
+//  }
+  // syntactic sugar constructor
+  Microphone(this.name, this.color, this.model);
+
+  // named constructor
+  Microphone.initialize() {
+    name = 'name';
+    color = 'color';
+    model = 000;
+  }
+
+  // getters and setters
+  String get getName => name;
+  set setName(String value) => name = value;
+
+  // methods
+  void turnOn() {
+    print('$name is on!');
+  }
+
+  void turnOff() {
+    print('$name is off!');
+  }
+
+  void setVolume() {
+    print('$name with the color $color volume is up!!');
+  }
+
+  bool isOn() => true;
+
+  int modelNumber() => model;
+
 }
