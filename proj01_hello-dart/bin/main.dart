@@ -196,12 +196,29 @@ main(List<String> arguments) {
   print(mic.getName);
 
   // 52 inheritance
+  var hugo = new Hugo();
+  hugo.name = 'Hugo Tomas';
+  hugo.showName();
+  hugo.profession = 'Boss Baby';
+  hugo.showProfession();
+
+  var guida1 = new Guida();
+  guida1.name = 'Guida e Linda';
+  guida1.nationality = 'Portuguese';
+  guida1.showName();
+
+  // 53 override
+  hugo.sayHello();
+  guida1.sayHello();
+
+  hugo.showNationality();
+  guida1.showNationality();
+
+  // 54
 
 
 
 
-
-  
 
 
   print('Hello world: ${function_hello.calculate()}!');
@@ -296,5 +313,37 @@ class Microphone {
   bool isOn() => true;
 
   int modelNumber() => model;
-
 }
+
+/* INHERITANCE FOR CLASSES */
+//parent
+class Person {
+  //attributes
+  String name, lastName, nationality;
+
+  //methods
+  void showName() {
+    print(this.name);
+  }
+
+  void sayHello() => print('Hello');
+
+  void showNationality() => print('I am British!!');
+}
+
+//child
+class Hugo extends Person {
+  //attributes
+  String profession;
+
+  //methods
+  void showProfession() => print(profession);
+
+  @override
+  void sayHello() => print('Ola');
+
+  @override
+  void showNationality() => print('Eu sou um BIFINHO!! PT e UK');
+}
+
+class Guida extends Person {}
